@@ -1,12 +1,17 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { CommentForm } from '@/components/comment-form';
-import type { OfferDetails } from '@/types';
+import { ReviewsList } from '@/components/reviews-list';
+import { OfferList } from '@/components/offer-list';
+import Map from '@/components/map';
+import type { Offer, OfferDetails, Review } from '@/types';
 
 type OfferPageProps = {
   offers: OfferDetails[];
+  reviews: Review[];
+  nearPlaces: Offer[];
 };
 
-export const OfferPage = ({ offers }: OfferPageProps) => {
+export const OfferPage = ({ offers, reviews, nearPlaces }: OfferPageProps) => {
   const { id } = useParams();
   const offer = offers.find((item) => item.id === id);
 
@@ -132,42 +137,23 @@ export const OfferPage = ({ offers }: OfferPageProps) => {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">
-                  Reviews &middot; <span className="reviews__amount">1</span>
-                </h2>
-                <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img
-                          className="reviews__avatar user__avatar"
-                          src="img/avatar-max.jpg"
-                          width="54"
-                          height="54"
-                          alt="Max"
-                        />
-                      </div>
-                      <span className="reviews__user-name">Max</span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{ width: '80%' }}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">{offer.description}</p>
-                      <time className="reviews__time" dateTime="2019-04-24">
-                        April 2019
-                      </time>
-                    </div>
-                  </li>
-                </ul>
+                <ReviewsList reviews={reviews} />
                 <CommentForm />
               </section>
             </div>
           </div>
+          <Map city={offer.city} offers={nearPlaces} className="offer__map" />
         </section>
+        <div className="container">
+          <section className="near-places places">
+            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <OfferList
+              offers={nearPlaces}
+              variant="near"
+              className="near-places__list places__list"
+            />
+          </section>
+        </div>
       </main>
     </div>
   );

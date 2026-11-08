@@ -3,7 +3,7 @@ import type { Offer } from '@/types';
 
 type OfferCardProps = {
   offer: Offer;
-  variant?: 'city' | 'favorite';
+  variant?: 'city' | 'favorite' | 'near';
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   isActive?: boolean;
@@ -16,13 +16,31 @@ export const OfferCard = ({
   onMouseLeave,
   isActive = false,
 }: OfferCardProps) => {
+  const getCardClassName = () => {
+    switch (variant) {
+      case 'favorite':
+        return 'favorites__card place-card';
+      case 'near':
+        return 'near-places__card place-card';
+      default:
+        return 'cities__card place-card';
+    }
+  };
+
+  const getImageWrapperClassName = () => {
+    switch (variant) {
+      case 'favorite':
+        return 'favorites__image-wrapper place-card__image-wrapper';
+      case 'near':
+        return 'near-places__image-wrapper place-card__image-wrapper';
+      default:
+        return 'cities__image-wrapper place-card__image-wrapper';
+    }
+  };
+
   const isFavoriteCard = variant === 'favorite';
-  const cardClassName = isFavoriteCard
-    ? 'favorites__card place-card'
-    : 'cities__card place-card';
-  const imageWrapperClassName = isFavoriteCard
-    ? 'favorites__image-wrapper place-card__image-wrapper'
-    : 'cities__image-wrapper place-card__image-wrapper';
+  const cardClassName = getCardClassName();
+  const imageWrapperClassName = getImageWrapperClassName();
   const infoClassName = isFavoriteCard
     ? 'favorites__card-info place-card__info'
     : 'place-card__info';

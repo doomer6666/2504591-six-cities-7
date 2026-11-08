@@ -4,7 +4,7 @@ import type { Offer } from '@/types';
 
 type OfferListProps = {
   offers: Offer[];
-  variant?: 'city' | 'favorite';
+  variant?: 'city' | 'favorite' | 'near';
   className?: string;
 };
 
