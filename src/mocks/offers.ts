@@ -10,8 +10,8 @@ export const offers: Offer[] = [
       location: { latitude: 52.37454, longitude: 4.897976, zoom: 12 },
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16,
     },
     price: 120,
@@ -29,7 +29,7 @@ export const offers: Offer[] = [
       location: { latitude: 52.37454, longitude: 4.897976, zoom: 12 },
     },
     location: {
-      latitude: 52.369553943508,
+      latitude: 52.3609553943508,
       longitude: 4.85309666406198,
       zoom: 16,
     },
