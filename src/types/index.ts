@@ -3,5 +3,6 @@ export type {
   City,
   Offer,
   OfferDetails,
+  Review,
   CardVariant,
 } from './offer.type';

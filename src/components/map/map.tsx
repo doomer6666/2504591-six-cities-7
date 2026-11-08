@@ -12,9 +12,10 @@ const TILE_LAYER_ATTRIBUTION =
 type MapProps = {
   city: City;
   offers: Offer[];
+  className?: string;
 };
 
-function Map({ city, offers }: MapProps): JSX.Element {
+function Map({ city, offers, className }: MapProps): JSX.Element {
   const mapRef = useRef<HTMLElement | null>(null);
   const { latitude, longitude, zoom } = city.location;
 
@@ -47,7 +48,11 @@ function Map({ city, offers }: MapProps): JSX.Element {
   }, [latitude, longitude, zoom, offers]);
 
   return (
-    <section className="cities__map map" ref={mapRef} aria-label="Map of rental offers" />
+    <section
+      className={className ? `${className} map` : 'cities__map map'}
+      ref={mapRef}
+      aria-label="Map of rental offers"
+    />
   );
 }
 
