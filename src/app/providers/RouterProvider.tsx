@@ -27,7 +27,7 @@ export const AppRouterProvider = ({
       children: [
         {
           path: '/',
-          element: <MainPage offers={offers} />,
+          element: <MainPage />,
         },
         {
           path: '/login',
@@ -36,7 +36,11 @@ export const AppRouterProvider = ({
         {
           path: '/offer/:id',
           element: (
-            <OfferPage offers={offerDetails} reviews={reviews} nearPlaces={nearPlaces} />
+            <OfferPage
+              offers={offerDetails}
+              reviews={reviews}
+              nearPlaces={nearPlaces}
+            />
           ),
         },
       ],
