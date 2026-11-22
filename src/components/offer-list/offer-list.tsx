@@ -6,12 +6,14 @@ type OfferListProps = {
   offers: Offer[];
   variant?: 'city' | 'favorite' | 'near';
   className?: string;
+  onActiveOfferChange?: (offerId: string | null) => void;
 };
 
 export const OfferList = ({
   offers,
   variant = 'city',
   className,
+  onActiveOfferChange,
 }: OfferListProps) => {
   const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
 
@@ -22,8 +24,14 @@ export const OfferList = ({
           key={offer.id}
           offer={offer}
           variant={variant}
-          onMouseEnter={() => setActiveOfferId(offer.id)}
-          onMouseLeave={() => setActiveOfferId(null)}
+          onMouseEnter={() => {
+            setActiveOfferId(offer.id);
+            onActiveOfferChange?.(offer.id);
+          }}
+          onMouseLeave={() => {
+            setActiveOfferId(null);
+            onActiveOfferChange?.(null);
+          }}
           isActive={activeOfferId === offer.id}
         />
       ))}
