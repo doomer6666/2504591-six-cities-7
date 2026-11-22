@@ -1,4 +1,4 @@
-import { City, Offer } from '@/types/offer.type';
+import type { Offer } from '@/types/offer.type';
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCityName, setOffers } from './action';
 
